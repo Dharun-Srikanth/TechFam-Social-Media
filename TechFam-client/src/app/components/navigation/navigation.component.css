@@ -1,0 +1,36 @@
+.navigation-section{
+    box-shadow: 0px 5px 10px 0px rgba(137, 137, 137, 0.623);
+    position: fixed;
+}
+
+.designation{
+    letter-spacing: 2px;
+}
+
+.count-details{
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.count{
+    font-size: 13px;
+}
+
+.options{
+    font-size: 18px;
+}
+
+.common{
+    margin-bottom: 5px;
+}
+
+.active{
+    font-weight: bold;
+    width: 90%;
+    text-align: left;
+    color: #4188ff;
+}
+
+.name{
+    color: #c55ff5;
+}

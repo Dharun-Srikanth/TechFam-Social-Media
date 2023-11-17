@@ -1,0 +1,28 @@
+<div class="chat-section bg-white rounded-4 mt-3 position-fixed ms-3">
+    <div class="title d-flex justify-content-between p-2 pb-1">
+        <p class="fs-5">Messages</p>
+        <i class="bi bi-chat-text-fill fs-4"></i>
+    </div>
+
+    <div class="serarch input-group mt-0">
+        <input type="search" class="form-control rounded-pill bg-body-tertiary ps-3" placeholder="Search messages"/>
+    </div>
+
+    <div class="category d-flex mt-3 justify-content-between">
+        <p class="mx-2 mt-2 fw-bold">Chats</p>
+        <p class="mx-2 mt-2">Groups</p>
+        <p class="mx-2 mt-2 text-primary">Requests (2)</p>
+    </div>
+    <div class="line mb-3">
+    </div>
+
+    <div class="people mx-2 d-flex my-1" *ngFor="let var of chats">
+        <div class="dp me-3">
+            <img src="../../../assets/rose" alt="dp" height="50px" class="rounded-circle">
+        </div>
+        <div class="name-status">
+            <p class="fw-bold mb-0">Park Chaeyoung</p>
+            <p class="text-success opacity-75">Online</p>
+        </div>
+    </div>
+</div>
