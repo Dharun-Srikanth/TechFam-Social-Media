@@ -1,0 +1,153 @@
+
+<div class="sketchfab-embed-wrapper">
+  <iframe
+  id="myVideo"
+    title="Wonderful World"
+    frameborder="0"
+    allowfullscreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    allow="autoplay; fullscreen; xr-spatial-tracking"
+    xr-spatial-tracking
+    execution-while-out-of-viewport
+    execution-while-not-rendered
+    web-share
+    width="100%"
+    height="100%"
+    src="https://sketchfab.com/models/3b377d37ddfe4e818570d013a0710c15/embed?autospin=0&autostart=1&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark_link=0&ui_watermark=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0"
+  >
+  </iframe>
+</div>
+
+<div
+  class="container d-flex justify-content-center align-items-center min-vh-100"
+>
+  <!-- <video autoplay muted loop id="myVideo">
+    <source src="rain.mp4" type="video/mp4" />
+  </video>
+   -->
+
+  <div class="scene scene--card me-5">
+    <div id="card1" class="card rounded-3 bg-light">
+      <div class="card__face card1__face--front rounded-3 bg-light">
+        <p
+          id="login"
+          class="login pt-5 mb-0 fs-3 fw-bold"
+          (click)="flip('card1', 'login')"
+        >
+          LOGIN
+        </p>
+        <img class="pb-5" src="../../../assets/login-animate.svg" alt="" />
+      </div>
+      <div class="card__face card__face--back rounded-3 bg-light">
+        <div class="content m-2 d-flex flex-column rounded-3">
+          <p
+            id="login-back"
+            class="text-primary fw-bold fs-3 pt-5 mt-5"
+            (click)="flip('card1', 'login-back')"
+          >
+            LOGIN
+          </p>
+
+          <form
+            #loginForm="ngForm"
+            (ngSubmit)="login(loginForm)"
+            action=""
+            class="m-3 mt-1"
+          >
+            <div class="form-floating m-3 mt-1">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                name="username"
+                [(ngModel)]="username"
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating m-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="password"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <p
+              class="error text-danger"
+              [ngClass]="error.length > 0 ? 'visible' : 'invisible'"
+            >
+              {{ error }}
+            </p>
+            <div class="submit">
+              <button class="btn btn-primary w-75 fw-bold">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene scene--card ms-5">
+    <div id="card2" class="card rounded-3 bg-light">
+      <div class="card__face card2__face--front rounded-3 bg-light">
+        <p
+          id="register"
+          class="register pt-5 mb-4 fw-bold fs-3"
+          (click)="flip('card2', 'register')"
+        >
+          REGISTER
+        </p>
+        <img src="../../../assets/register-animate.svg" width="80%" alt="" />
+      </div>
+      <div class="card__face card__face--back rounded-3 bg-light">
+        <div class="content m-2 d-flex flex-column rounded-3">
+          <p
+            id="register-back"
+            class="fw-bold fs-3 pt-5"
+            (click)="flip('card2', 'register-back')"
+          >
+            REGISTER
+          </p>
+
+          <form action="" class="m-3 mt-1">
+            <div class="form-floating m-3 mt-1">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Username"
+              />
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating m-3 mt-1">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating m-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="submit">
+              <button class="btn register-btn w-75 fw-bold">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

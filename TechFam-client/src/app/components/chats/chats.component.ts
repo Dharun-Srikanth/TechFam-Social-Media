@@ -1,6 +1,7 @@
 import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+import {GLTF, GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 
 @Component({
   selector: 'app-chats',
@@ -10,70 +11,70 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 export class ChatsComponent {
   chats:Number[] = [1,2,3]
 
-  @ViewChild('scene', { static: true })
-  private sceneElement!: ElementRef;
 
-  private scene!: THREE.Scene;
-  private camera!: THREE.PerspectiveCamera;
-  private renderer!: THREE.WebGLRenderer;
-  private mixer!: THREE.AnimationMixer;
+  // @ViewChild('scene', { static: true })
+  // private sceneElement!: ElementRef;
 
-  constructor(private ngZone: NgZone) {}
+  // private scene!: THREE.Scene;
+  // private camera!: THREE.PerspectiveCamera;
+  // private renderer!: THREE.WebGLRenderer;
+  // private mixer!: THREE.AnimationMixer;
 
-  ngOnInit(): void {
-    this.initScene();
-    this.loadAnimatedModel();
-    this.render();
-  }
+  // constructor(private ngZone: NgZone) {}
 
-  ngOnDestroy(): void {
-    // Clean up resources when the component is destroyed
-  }
+  // ngOnInit(): void {
+  //   this.initScene();
+  //   this.loadAnimatedModel();
+  //   this.render();
+  // }
 
-  private initScene(): void {
-    // Initialize your 3D scene here
-    this.scene = new THREE.Scene();
+  // ngOnDestroy(): void {
+  //   // Clean up resources when the component is destroyed
+  // }
 
-    // Create a camera
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.z = 5;
+  // private initScene(): void {
+  //   // Initialize your 3D scene here
+  //   this.scene = new THREE.Scene();
 
-    // Create a renderer
-    this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+  //   // Create a camera
+  //   this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  //   this.camera.position.z = 5;
 
-    // Append the renderer to the DOM
-    this.sceneElement.nativeElement.appendChild(this.renderer.domElement);
+  //   // Create a renderer
+  //   this.renderer = new THREE.WebGLRenderer();
+  //   this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Create an AnimationMixer
-    this.mixer = new THREE.AnimationMixer(this.scene);
-  }
+  //   // Append the renderer to the DOM
+  //   this.sceneElement.nativeElement.appendChild(this.renderer.domElement);
 
-  private loadAnimatedModel(): void {
-    const loader = new GLTFLoader();
+  //   // Create an AnimationMixer
+  //   this.mixer = new THREE.AnimationMixer(this.scene);
+  // }
 
-    loader.load('src/assets/3d/scene.gltf', (gltf) => {
-      // Add the loaded model to the scene
-      const model = gltf.scene;
-      this.mixer.clipAction(gltf.animations[0]).play();
-      this.scene.add(model);
-    });
-  }
+  // private loadAnimatedModel(): void {
+  //   const loader = new GLTFLoader();
 
-  private render(): void {
-    this.ngZone.runOutsideAngular(() => {
-      const animate = () => {
-        // Add your animation logic here
+  //   loader.load('../../../assets/3d/scene.gltf', (gltf: GLTF) => {
+  //     // Add the loaded model to the scene
+  //     const model = gltf.scene;
+  //     this.mixer.clipAction(gltf.animations[0]).play();
+  //     this.scene.add(model);
+  //   });
+  // }
 
-        // Update the mixer on each animation frame
-        this.mixer.update(0.01);
+  // private render(): void {
+  //   this.ngZone.runOutsideAngular(() => {
+  //     const animate = () => {
+  //       // Add your animation logic here
 
-        this.renderer.render(this.scene, this.camera);
-        requestAnimationFrame(animate);
-      };
+  //       // Update the mixer on each animation frame
+  //       this.mixer.update(0.01);
 
-      animate();
-    });
-  }
-}
+  //       this.renderer.render(this.scene, this.camera);
+  //       requestAnimationFrame(animate);
+  //     };
+
+  //     animate();
+  //   });
+  // }
 }

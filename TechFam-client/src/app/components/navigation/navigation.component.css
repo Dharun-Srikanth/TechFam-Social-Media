@@ -1,5 +1,5 @@
 .navigation-section{
-    box-shadow: 0px 5px 10px 0px rgba(137, 137, 137, 0.623);
+    width: 18%;
     position: fixed;
 }
 
@@ -20,15 +20,33 @@
     font-size: 18px;
 }
 
+.options:hover{
+    color: #4188ff;
+}
+
 .common{
     margin-bottom: 5px;
 }
 
 .active{
     font-weight: bold;
-    width: 90%;
+    width: 98%;
+    margin: 0;
     text-align: left;
-    color: #4188ff;
+    background-color: #4188ff;
+    box-shadow: 0px 5px 10px 0px rgba(137, 137, 137, 0.623);
+}
+
+.active>p{
+    color: white;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    display: flex;
+    border: #4188ff;
+}
+
+.active>p:hover{
+    color: white !important;
 }
 
 .name{

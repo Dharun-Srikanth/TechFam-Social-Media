@@ -1,4 +1,4 @@
-<div class="posts-section bg-white rounded-4 my-3" *ngFor="let value of values">
+<div class="posts-section bg-light rounded-3 my-3" *ngFor="let value of posts">
   <div class="post-layout">
     <div class="details p-3 d-flex">
       <img
@@ -8,24 +8,23 @@
         alt="dp"
       />
       <div class="info ms-2">
-        <p class="name fw-bold m-0">Selena Gomez</p>
+        <p class="name fw-bold m-0">{{value.postUserId.username}}</p>
         <p class="time">13 November 2023 at 10:28 PM</p>
       </div>
     </div>
     <div class="description px-3">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero ullam velit
-      rem veniam qui eveniet non earum nostrum cumque, nesciunt itaque.
+      {{value.caption}}
     </div>
-    <div class="images px-3 py-2">
-      <img src="../../../assets/logo-bg.png" height="215px" />
+    <div class="images px-3 py-2 text-center">
+      <img *ngIf="value.photo!==null" src="../../../assets/logo-bg.png" width="100%" />
     </div>
     <div class="line pb-2">
         <div class="color"></div>
     </div>
 
     <div class="actions d-flex px-4 justify-content-between align-items-center text-center w-100">
-        <div class="btns align-items-center d-flex"><i class="bi bi-heart-fill fs-5 like"></i><span class="ms-2">120k Likes</span></div>
-        <div class="btns d-flex align-items-center"><i class="bi bi-chat fs-5"></i><span class="ms-2">30k Comments</span></div>
+        <div class="btns align-items-center d-flex"><i class="bi bi-heart-fill fs-5 like"></i><span class="ms-2">{{value.likeCount}} Likes</span></div>
+        <div class="btns d-flex align-items-center"><i class="bi bi-chat fs-5"></i><span class="ms-2">{{value.comments.length}} Comments</span></div>
         <div class="btns d-flex align-items-center"><i class="bi bi-share fs-5"></i><span class="ms-2">223 Share</span></div>
     </div>
 

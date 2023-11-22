@@ -1,0 +1,108 @@
+<div class="container w-100 home">
+  <div class="sections row">
+    <div class="left-section col-3">
+      <app-navigation class="navigation-section"></app-navigation>
+      <app-friend-suggestions></app-friend-suggestions>
+    </div>
+
+    <div class="col-9 bg-light rounded-3 mt-3 friends-section">
+      <ul class="options mt-2 p-2 d-flex justify-content-around">
+        <li id="following" (click)="navigate('following')" class="active option" >Following</li>
+        <li id="followers" (click)="navigate('followers')" class="option">Followers</li>
+        <li id="requests" (click)="navigate('requests')" class="req option">Requests(2)</li>
+      </ul>
+
+      <hr />
+
+      <div class="filter d-flex justify-content-between mx-5">
+        <div class="sort">
+          <p>Sort By</p>
+        </div>
+        <div class="search form-group">
+          <input type="search" class="form-control" placeholder="Search" />
+        </div>
+      </div>
+
+      <div class="outer-div row" *ngIf="content==='following'">
+        <div class="list my-3 col">
+          <div
+            class="content ms-5 my-3 d-flex justify-content-between align-items-center"
+            *ngFor="let val of following"
+          >
+            <img
+              src="../../../assets/rose.jpg"
+              alt=""
+              width="50px"
+              class="rounded-circle"
+            />
+            <div class="detail">
+              <p class="fw-bold">{{val.username}}</p>
+            </div>
+            <div class="action">
+              <button class="svg">Unfollow</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="h-50 col mx-5 mt-5 pt-4">
+          <img src="../../../assets/following-animate.svg" alt="" width="100%">
+        </div>
+      </div>
+
+      <div class="outer-div row" *ngIf="content==='followers'">
+        <div class="list my-3 col">
+          <div
+            class="content ms-5 my-3 d-flex justify-content-between align-items-center"
+            *ngFor="let val of followers"
+          >
+            <img
+              src="../../../assets/rose.jpg"
+              alt=""
+              width="50px"
+              class="rounded-circle"
+            />
+            <div class="detail">
+              <p class="fw-bold">{{val.username}}</p>
+            </div>
+            <div class="action">
+              <button class="svg">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="h-50 col mx-5 mt-5 pt-4">
+          <img src="../../../assets/followers-animate.svg" alt="" width="100%">
+        </div>
+      </div>
+
+      <div class="outer-div row" *ngIf="content==='requests'">
+        <div class="list my-3 col">
+          <div
+            class="content ms-5 my-3 d-flex justify-content-between align-items-center"
+            *ngFor="let val of requests"
+          >
+            <img
+              src="../../../assets/rose.jpg"
+              alt=""
+              width="50px"
+              class="rounded-circle"
+            />
+            <div class="detail">
+              <p>User {{val}}</p>
+            </div>
+            <div class="action d-flex">
+              <button class="btn btn-outline-danger me-3">Remove</button>
+              <button class="btn btn-primary">Accept</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="h-50 col mx-5 mt-5 pt-4">
+          <img src="../../../assets/accept-request-animate.svg" alt="" width="100%">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

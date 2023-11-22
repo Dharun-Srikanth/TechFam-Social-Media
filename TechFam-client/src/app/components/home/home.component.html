@@ -1,14 +1,17 @@
 <div class="container w-100 home">
-    <div class="sections row">
-            <app-navigation class="navigation-section col-3"></app-navigation>  
-            <div class="center-section col-6">
-                <app-random-info class="info-section"></app-random-info>
-                <app-posts></app-posts>
-            </div>
-            <div class="right-section col-3">
-                <app-chats></app-chats>
-                <app-friend-suggestions></app-friend-suggestions>
-            </div>
+  <div class="sections row">
+    <div class="left-section col-3">
+      <app-navigation class="navigation-section"></app-navigation>
+      <app-friend-suggestions></app-friend-suggestions>
     </div>
-    
+
+    <!-- Home Page -->
+    <div class="center-section col-6" *ngIf="currentPage()==='/home'">
+      <app-random-info class="info-section"></app-random-info>
+      <app-posts></app-posts>
+    </div>
+    <div class="right-section col-3" *ngIf="currentPage()==='/home'">
+      <app-chats></app-chats>
+    </div>
+  </div>
 </div>

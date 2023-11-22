@@ -1,7 +1,15 @@
 .suggestions{
-    margin-top: 440px;
-    width: 20%;
-    box-shadow: 0px 5px 10px 0px rgba(137, 137, 137, 0.623);
+    margin-top: 26.5%;
+    width: 18%;
+}
+
+.suggestions{
+    position: static;
+}
+
+.scroll{
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .by{
@@ -11,8 +19,4 @@
 
 .follow-btn{
     border: 1px solid #4188ff;
-}
-
-.see-all{
-    color: #ae00ff;
 }

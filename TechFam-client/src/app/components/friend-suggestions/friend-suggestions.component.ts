@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./friend-suggestions.component.css']
 })
 export class FriendSuggestionsComponent {
-  suggesstions:Number[] = [1,2,3]
+  suggesstions:Number[] = [1,2,3,4]
 }
