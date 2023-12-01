@@ -35,4 +35,4 @@
 <h3>DB SCHEMA:</h3>
 
 <h3>DEMO VIDEO:</h3>
-<p>[![Watch the video](https://img.freepik.com/premium-vector/video-player-interface-play-button-play-video_177006-355.jpg?w=360)]([https://drive.google.com/file/d/1MUhDiV-IqLwp9_Pu7OVXZ54s1YjRkLmb/view?usp=sharing])</p>
+<p>[![Watch the video](https://img.freepik.com/premium-vector/video-player-interface-play-button-play-video_177006-355.jpg?w=360)](https://drive.google.com/file/d/1MUhDiV-IqLwp9_Pu7OVXZ54s1YjRkLmb/view?usp=sharing)</p>
