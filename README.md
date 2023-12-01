@@ -11,18 +11,18 @@
 
 <h3>💻 TECH STACKS 💻</h3>
 <h4>💡 FRONTED: 💡</h4>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /></p>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /></p>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" /></p>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" /></p>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" /></p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /></p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /></p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" /></p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" /></p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" /></p>
 
 <h4>💡 BACKEND: 💡</h4>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)</p>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 <img src="https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot" /></p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white" /> </p>
+<p>&nbsp; &nbsp;  <img src="https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot" /></p>
 
 <h4>💡 DATABASE: 💡</h4>
-<p>&nbsp; &nbsp; 🧑🏻‍💻 MySQL</p>
+<p>&nbsp; &nbsp; <img src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white" /> </p>
 
 <h3>📷 SCREENSHOTS: 📷</h3>
 <h4>🌐 LOGIN PAGE</h4>
