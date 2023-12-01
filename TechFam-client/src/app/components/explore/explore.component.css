@@ -12,13 +12,29 @@
 
 .column {
     -ms-flex: 25%; /* IE10 */
-    flex: 25%;
+    flex: 20%;
     max-width: 25%;
     padding: 0 4px;
   }
   
   .column img {
-    margin-top: 8px;
     vertical-align: middle;
     width: 100%;
   }
+
+.column{
+  border: 1px solid #4188ff;
+}
+
+.column:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.bi{
+  color: #4188ff;
+}
+
+.explore-area{
+  min-height: 85vh;
+}

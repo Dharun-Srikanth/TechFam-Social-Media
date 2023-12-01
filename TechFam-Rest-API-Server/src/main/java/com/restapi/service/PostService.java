@@ -9,10 +9,13 @@ import com.restapi.repository.FollowingRepository;
 import com.restapi.repository.PostRepository;
 import com.restapi.repository.UserRepository;
 import com.restapi.request.PostRequest;
+import com.restapi.response.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,14 +34,17 @@ public class PostService {
     @Autowired
     private PostDto postDto;
 
-    public List<Post> findUserPost(Long id) {
-         return postRepository.findUserPosts(id);
+    public List<PostResponse> findUserPost(Long id) {
+         List<Post> posts = postRepository.findUserPosts(id);
+         return postDto.mapToPostResponse(posts);
     }
 
     public List<Post> findAllPost() {
         return postRepository.findAll();
     }
 
+
+    @Transactional
     public List<Post> createPost( PostRequest postRequest) {
         Post post = postDto.mapToPost(postRequest);
         AppUser user = userRepository.findById(postRequest.getPostUserId())
@@ -48,6 +54,7 @@ public class PostService {
         return findAllPost();
     }
 
+    @Transactional
     public List<Post> editPost(PostRequest postRequest) {
         Post post = postDto.mapToPost(postRequest);
         AppUser user = userRepository.findById(postRequest.getPostUserId())
@@ -62,8 +69,36 @@ public class PostService {
         return findAllPost();
     }
 
-    public List<Post> findFollowingPosts(Long id) {
+    public List<PostResponse> findFollowingPosts(Long id) {
         List<Long> followingIds = followingRepository.findAllFollowingIds(id);
-        return postRepository.findAllById(followingIds);
+        List<PostResponse> posts = new ArrayList<>();
+        for (Long followingId:followingIds){
+            List<Post> userPosts = postRepository.findUserPosts(followingId);
+            List<PostResponse> postResponseList =  postDto.mapToPostResponse(userPosts);
+            posts.addAll(postResponseList);
+        }
+        return posts;
+    }
+
+    public List<PostResponse> findExplorePosts(Long id) {
+        List<Post> posts =  postRepository.findExplore(id);
+        return postDto.mapToPostResponse(posts);
+    }
+
+    @Transactional
+    public void addLike(Long id) {
+        Long like = postRepository.getLikeCount(id);
+        postRepository.addPostLike(like+1, id);
+    }
+
+    @Transactional
+    public void removeLike(Long id) {
+        Long like = postRepository.getLikeCount(id);
+        postRepository.addPostLike(like-1, id);
+    }
+
+    public List<Post> createNewPost(Post post) {
+        postRepository.save(post);
+        return findAllPost();
     }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { LoaderService } from './service/loader.service';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,13 @@ import { LoaderService } from './service/loader.service';
 })
 export class AppComponent {
   title = 'TechFam-client';
+
+ options: AnimationOptions = {
+    path: '/assets/loading.json',
+    rendererSettings: {
+      className: 'lottie-loader',
+    },
+  };
 
   url = new URL(window.location.href);
 

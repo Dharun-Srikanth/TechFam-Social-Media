@@ -9,9 +9,11 @@ import com.restapi.repository.CommentRepository;
 import com.restapi.repository.PostRepository;
 import com.restapi.repository.UserRepository;
 import com.restapi.request.CommentRequest;
+import com.restapi.response.CommentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -33,11 +35,13 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
-    public List<Comment> findCommentsByPostId(Long id) {
-        return commentRepository.findCommentsById(id);
+    public List<CommentResponse> findCommentsByPostId(Long id) {
+        List<Comment> comments = commentRepository.findCommentsById(id);
+        return commentDto.mapToCommentResponse(comments);
     }
 
-    public List<Comment> createComment(CommentRequest commentRequest) {
+    @Transactional
+    public List<CommentResponse> createComment(CommentRequest commentRequest) {
         Comment comment = commentDto.mapToComment(commentRequest);
         AppUser user = userRepository.findById(commentRequest.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("userId", "userId", commentRequest.getUserId()));
@@ -46,9 +50,10 @@ public class CommentService {
                 .orElseThrow(() -> new ResourceNotFoundException("postId", "postId", commentRequest.getPostId()));
         comment.setPost(post);
         commentRepository.save(comment);
-        return findAllComments();
+        return findCommentsByPostId(commentRequest.getPostId());
     }
 
+    @Transactional
     public List<Comment> editComment(CommentRequest commentRequest) {
         Comment comment = commentDto.mapToComment(commentRequest);
         AppUser user = userRepository.findById(commentRequest.getUserId())

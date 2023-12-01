@@ -80,6 +80,7 @@ public class AppUser {
     private List<Comment> comments;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
 }

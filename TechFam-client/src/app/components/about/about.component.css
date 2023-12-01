@@ -1,3 +1,18 @@
 .home{
     padding-top: 4.5%;
 }
+
+.about {
+    min-height: 85vh;
+}
+
+.body-content{
+    text-align: justify;
+}
+
+.about-H {
+    background: -webkit-linear-gradient(#0762ff, #ff00ea);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

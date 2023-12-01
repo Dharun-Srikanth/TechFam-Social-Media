@@ -1,3 +1,5 @@
+import {detailsUser } from "./appUser";
+
 export interface UserDetails {
     id:number;
     profile_picture:any;
@@ -7,4 +9,6 @@ export interface UserDetails {
     instagramUrl:String;
     linkedInUrl:String;
     youtubeUrl:String;
+    userId:number,
+    aboutMe:String
 }

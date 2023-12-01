@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class UserDetailsRequest {
-    private byte[] dp;
+    private String dp;
     private String companyName;
     private String designation;
-    private String gitHub;
-    private String youtube;
-    private String linkedIn;
-    private String instagram;
+    private String gitHubUrl;
+    private String youtubeUrl;
+    private String linkedInUrl;
+    private String instagramUrl;
     private Long userId;
+    private String aboutMe;
+    private Long id;
 }

@@ -12,9 +12,9 @@ public class PostRequest {
 
     private String caption;
 
-    private Long likes;
+    private Long likes=0L;
 
-    private byte[] photo;
+    private String photo;
 
     private Long postUserId;
 }

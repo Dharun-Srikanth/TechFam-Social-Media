@@ -1,10 +1,63 @@
 <div class="container w-100 home">
-    <div class="sections row">
-      <div class="left-section col-3">
-        <app-navigation class="navigation-section"></app-navigation>
-        <app-friend-suggestions></app-friend-suggestions>
+  <div class="sections row">
+    <div class="left-section col-3">
+      <app-navigation class="navigation-section"></app-navigation>
+      <app-friend-suggestions></app-friend-suggestions>
+    </div>
+
+    <div class="col-9 bg-body-secondary about rounded-3 mt-3">
+      <div class="section1 d-flex justify-content-center align-items-center">
+        <ng-lottie [options]="options" class="col"></ng-lottie>
+        <div class="content bg-light col rounded-3 h-50 p-5">
+          <h3 class="fw-bold text-center about-H">ABOUT TECHFAM</h3>
+          <p class="body-content pt-2">
+            &nbsp; &nbsp; &nbsp; &nbsp; <strong class="text-primary">TechFam</strong> is a
+            <strong class="text-primary">SOCIAL MEDIA PLATFORM PROJECT</strong> developed by
+            <strong class="text-primary">DHARUN S</strong>. This platform will be an area to post
+            technical contents, errors to be solved, knowledge based stuffs
+            which makes all the techies to interact one another. As the tagline
+            - <i class="text-primary">"A World Of Techies"</i> of TECHFAM suggests it is a platform(world)
+            for the techies to grow along with the technology
+          </p>
+        </div>
       </div>
 
+      <div class="section2 d-flex justify-content-center align-items-center">
+        <div class="content bg-light col rounded-3 h-50 p-5">
+          <h3 class="fw-bold text-center about-H">TECH STACK</h3>
+          <p class="body-content pt-2">
+            Let's see the TECH STACKS used in this project:
+          </p>
+          <p class="fw-bold fs-6 text-center">FRONTEND:</p>
+          <div class="frontend text-center">
+            <img class="m-1" src="../../../assets/html.png" alt="angularjs" height="100px">
+            <img class="m-1" src="../../../assets/css.png" alt="angularjs" height="100px">
+            <img class="m-1" src="../../../assets/bootstrap.png" alt="angularjs" height="100px">
+            <img class="m-1" src="../../../assets/javascript.png" alt="angularjs" height="100px">
+            <img class="m-1" src="../../../assets/typescript.png" alt="angularjs" height="100px">
+            <img class="m-1" src="../../../assets/angularjs.png" alt="angularjs" height="100px">
+          </div>
+        </div>
+        <ng-lottie [options]="options2" class="col"></ng-lottie>
+      </div>
+
+      <div class="section3 mt-5 d-flex justify-content-center align-items-center">
+        <ng-lottie [options]="options3" class="col"></ng-lottie>
+        <div class="content bg-light col rounded-3 h-50 p-5">
+          <h3 class="fw-bold text-center about-H">TECH STACK</h3>
+          <p class="fw-bold fs-6 text-center">BACKEND:</p>
+          <div class="frontend text-center">
+            <img class="m-2 me-5" src="../../../assets/java.png" alt="angularjs" height="100px">
+            <img class="m-1" src="../../../assets/spring.png" alt="angularjs" height="100px">
+          </div>
+        </div>
+      </div>
+      <div class="copyright text-center">
+        <p>
+          Copyright &copy; 2023
+          <a href="http://localhost:4200/home">TechFam.com</a>
+        </p>
+      </div>
     </div>
   </div>
-  
+</div>

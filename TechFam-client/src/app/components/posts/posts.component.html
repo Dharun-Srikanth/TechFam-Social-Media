@@ -1,3 +1,8 @@
+<div class="no-post-animation" *ngIf="posts.length===0">
+  <ng-lottie [options]="options"></ng-lottie>
+  <p class="fw-bold fs-5 text-center noPost py-2 text-white rounded-3 mx-5">No posts found. Follow to see posts!</p>
+</div>
+
 <div class="posts-section bg-light rounded-3 my-3" *ngFor="let value of posts">
   <div class="post-layout">
     <div class="details p-3 d-flex">
@@ -8,35 +13,93 @@
         alt="dp"
       />
       <div class="info ms-2">
-        <p class="name fw-bold m-0">{{value.postUserId.username}}</p>
-        <p class="time">13 November 2023 at 10:28 PM</p>
+        <p class="name fw-bold m-0" (click)="setUserProfileId(value.postUserId.id)" routerLink="/profile">{{ value.postUserId.username }}</p>
+        <p class="time">{{value.createdAt | date: 'dd MMMM, yyyy' }}</p>
       </div>
     </div>
     <div class="description px-3">
-      {{value.caption}}
+      {{ value.caption }}
     </div>
     <div class="images px-3 py-2 text-center">
-      <img *ngIf="value.photo!==null" src="../../../assets/logo-bg.png" width="100%" />
+      <img
+        *ngIf="value.photo !== null"
+        src="{{'http://localhost:8080/api/downloadFile/downloadImage/post/'+value.id}}"
+        width="100%"
+      />
     </div>
     <div class="line pb-2">
-        <div class="color"></div>
+      <div class="color"></div>
     </div>
 
-    <div class="actions d-flex px-4 justify-content-between align-items-center text-center w-100">
-        <div class="btns align-items-center d-flex"><i class="bi bi-heart-fill fs-5 like"></i><span class="ms-2">{{value.likeCount}} Likes</span></div>
-        <div class="btns d-flex align-items-center"><i class="bi bi-chat fs-5"></i><span class="ms-2">{{value.comments.length}} Comments</span></div>
-        <div class="btns d-flex align-items-center"><i class="bi bi-share fs-5"></i><span class="ms-2">223 Share</span></div>
+    <div
+      class="actions d-flex px-4 justify-content-between align-items-center text-center w-100"
+    >
+      <div class="btns align-items-center d-flex">
+        <i
+          class="bi bi-heart fs-5 unlike"
+          (click)="addLikes(value.id)"
+          *ngIf="!getLikedPosts().includes(value.id)"
+        ></i>
+        <i
+          class="bi bi-heart-fill fs-5 like"
+          (click)="removeLikes(value.id)"
+          *ngIf="getLikedPosts().includes(value.id)"
+        ></i
+        ><span class="ms-2">{{ value.likeCount }} Likes</span>
+      </div>
+      <div class="btns d-flex align-items-center comments" (click)="setCommentsClick(value.id)" (click)="getComments(value.id)">
+        <i class="bi bi-chat fs-5"></i
+        ><span class="ms-2">{{ value.comments.length }} Comments</span>
+      </div>
     </div>
 
-    <hr class="horizontal mt-2">
+    <hr class="horizontal mt-2" />
 
-    <div class="add-comment d-flex align-item-center px-3 pb-3">
+    <div class="view-comments" *ngIf="isCommentsClicked && commentNumber===value.id">
+      <div class="content d-flex my-3 ms-5"  *ngFor="let val of postComments">
+        <div class="dp m-2 ">
+          <img src="../../../assets/rose.jpg" alt="dp" height="32px" class="rounded-circle">
+        </div>
+        <div class="username d-flex flex-column ms-2">
+          <p class="mb-0 pb-0 fs-6 fw-bold">{{val.user.username}}</p>
+          <div class="comment mt-0 pt-0">
+            {{val.comments}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form #commentForm="ngForm" (ngSubmit)="addComments(commentForm)">
+      <div class="add-comment d-flex align-item-center px-3 pb-3">
         <div class="dp">
-            <img src="../../../assets/dp.jpg" alt="dp" height="40px" class="rounded-circle">
+          <img
+            src="{{'http://localhost:8080/api/downloadFile/downloadImage/user/'+ getUserDetails().id }}"
+            alt="dp"
+            height="40px"
+            width="40px"
+            class="rounded-circle"
+          />
         </div>
         <div class="write-comment input-group ps-2">
-            <input type="text" class="form-control p-2 rounded-3 bg-body-tertiary" placeholder="Write your comment..."><i class="bi bi-send-arrow-up-fill fs-4"></i>
+          <input
+            type="hidden"
+            value="{{ value.id }}"
+            name="postId"
+            [(ngModel)]="value.id"
+          />
+          <input
+            type="text"
+            class="form-control p-2 rounded-3 bg-body-tertiary"
+            placeholder="Write your comment..."
+            name="comment"
+            ngModel
+            
+          />
+          <button type="submit" class="btn rounded-3">
+            <i class="fa-solid fa-circle-chevron-right fa-xl z-3"></i>
+          </button>
         </div>
-    </div>
+      </div>
+    </form>
   </div>
 </div>

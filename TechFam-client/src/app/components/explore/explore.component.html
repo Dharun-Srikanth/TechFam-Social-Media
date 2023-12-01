@@ -5,41 +5,38 @@
       <app-friend-suggestions></app-friend-suggestions>
     </div>
 
-    <div class="col-9 bg-light rounded-3 mt-3">
-      <div class="row"> 
-        <div class="column">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-        </div>
-        <div class="column">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-        </div>  
-        <div class="col">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-        </div>
-        <div class="column">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/logo-bg.png" style="width:100%">
-          <img src="../../../assets/dp.jpg" style="width:100%">
-          <img src="../../../assets/rose.jpg" style="width:100%">
+    <div class="col-9 bg-light explore-area rounded-3 mt-3">
+      <div class="row m-2">
+        <div class="column h-50 bg-white rounded-3  m-1" *ngFor="let val of explore">
+          <div class="box bg-white m-1 p-3">
+            <div class="user d-flex align-items-center">
+              <div class="dp">
+                <img src="../../../assets/dp.jpg" alt="dp" height="32px" class="rounded-circle">
+              </div>
+              <div class="name ms-2 pt-3">
+                <p class="fw-bold">{{val.postUserId.username}}</p>
+              </div>
+            </div>
+            <div class="caption p-1" *ngIf="val.caption !== null">
+              <p>{{ val.caption }}</p>
+            </div>
+            <div class="image p-1" *ngIf="val.photo !== null">
+              <img
+                src="{{'http://localhost:8080/api/downloadFile/downloadImage/post/'+val.id}}"
+                style="width: 100%"
+              />
+            </div>
+            <div class="counts d-flex ms-2 pb-2">
+              <div class="likes">
+                <i class="bi bi-heart-fill fs-6"></i>
+                {{val.likeCount}}
+              </div>
+              <div class="comments ms-2">
+                <i class="bi bi-chat-text-fill"></i>
+                {{val.comments.length}}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

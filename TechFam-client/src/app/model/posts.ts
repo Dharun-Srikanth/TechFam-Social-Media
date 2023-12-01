@@ -5,4 +5,11 @@ export interface Posts {
     likeCount:number;
     comments:String[];
     postUserId:any;
+    createdAt:any;
+}
+
+export interface NewPost {
+    caption:String;
+    photo:any;
+    postUserId:number
 }

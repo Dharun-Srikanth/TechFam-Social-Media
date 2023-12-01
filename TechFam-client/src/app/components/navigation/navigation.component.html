@@ -2,10 +2,11 @@
   class="navigation-section text-center bg-light d-flex flex-column rounded-3 mt-3"
 >
   <div class="profile-pic mt-3">
-    <img src="../../../assets/dp.jpg" height="100px" class="rounded-circle" />
+    <img *ngIf="getUserDetails().profile_picture" src="{{'http://localhost:8080/api/downloadFile/downloadImage/user/'+getUserDetails().id }}" height="100px" width="100px" class="rounded-circle" />
+    <img *ngIf="!getUserDetails().profile_picture" src="../../../assets/empty.png" height="100px" width="100px" class="rounded-circle" />
   </div>
   <div class="name-content mt-2 mb-1 py-0">
-    <p class="fw-bold fs-5 mb-0 name">{{username}}</p>
+    <p class="fw-bold fs-5 mb-0 name" routerLink="/profile" (click)="profileId()">{{username}}</p>
     <p class="designation mt-1 fst-italic mb-1">{{designation}}</p>
   </div>
  
@@ -24,26 +25,26 @@
   </div> -->
 
   <div class="options text-start mb-2">
-    <div #feed class="feeds ps-4 rounded-end-pill">
-      <p class="btn rounded-end-pill common mt-0" (click)="active('/home')">
+    <div #feed [ngClass]="route==='home' ? 'active': ''" class="feeds ps-4 rounded-end-pill nav-option" routerLink="/home">
+      <p class="btn rounded-end-pill common mt-0" >
         <i class="bi bi-rss-fill me-2"></i> Feeds
       </p>
     </div>
 
-    <div #explore class="ps-4 explore rounded-end-pill">
-      <p class="btn common mt-0" (click)="active('/explore')">
+    <div #explore [ngClass]="route==='explore' ? 'active': ''" class="ps-4 explore rounded-end-pill nav-option" routerLink="/explore">
+      <p class="btn common mt-0"  >
         <i class="bi bi-globe-central-south-asia pe-2"></i> Explore
       </p>
     </div>
 
-    <div #friends class="ps-4 followers rounded-end-pill">
-      <p class="btn common mt-0" (click)="active('/friends')">
+    <div #friends [ngClass]="route==='friends' ? 'active': ''" class="ps-4 followers rounded-end-pill nav-option" routerLink="/friends">
+      <p class="btn common mt-0" >
         <i class="bi bi-person-hearts pe-2"></i> Friends
       </p>
     </div>
 
-    <div #about class="ps-4 about d-flex rounded-end-pill">
-      <p class="btn common mt-0" (click)="active('/about')">
+    <div #about [ngClass]="route==='about' ? 'active': ''" class="ps-4 about d-flex rounded-end-pill nav-option" routerLink="/about">
+      <p class="btn common mt-0" >
         <i class="bi bi-info-circle-fill pe-2"></i> About
       </p>
     </div>

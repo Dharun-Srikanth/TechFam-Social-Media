@@ -17,6 +17,20 @@
     opacity: 50%;
 }
 
+.unFollow-btn{
+    border: 1px solid green;
+}
+
+.who:hover{
+    cursor: pointer;
+    color: #4188ff;
+    font-weight: bold;
+}
+
+.bi-person-fill-add{
+    color: #ae00ff;
+}
+
 .follow-btn{
     border: 1px solid #4188ff;
 }

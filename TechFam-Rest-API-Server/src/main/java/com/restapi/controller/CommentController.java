@@ -2,6 +2,7 @@ package com.restapi.controller;
 
 import com.restapi.model.Comment;
 import com.restapi.request.CommentRequest;
+import com.restapi.response.CommentResponse;
 import com.restapi.response.common.APIResponse;
 import com.restapi.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse> getCommentsByPostId(@PathVariable Long id){
-        List<Comment> commentListByPost = commentService.findCommentsByPostId(id);
+        List<CommentResponse> commentListByPost = commentService.findCommentsByPostId(id);
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(commentListByPost);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
@@ -39,7 +40,7 @@ public class CommentController {
 
     @PostMapping("/create")
     public ResponseEntity<APIResponse> createComment(@RequestBody CommentRequest commentRequest){
-        List<Comment> commentList = commentService.createComment(commentRequest);
+        List<CommentResponse> commentList = commentService.createComment(commentRequest);
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(commentList);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

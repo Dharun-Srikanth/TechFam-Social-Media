@@ -1,21 +1,41 @@
 <div class="suggestions bg-light rounded-3 position-fixed mb-2">
-    <div class="scroll">
-        <div class="title d-flex justify-content-between mx-3 my-2 mt-3">
-            <p class="fw-bold">Suggested For You</p>
-        </div>
-    
-        <div class="people d-flex justify-content-between mx-4" *ngFor="let var of suggesstions">
-            <div class="dp">
-                <img src="../../../assets/rose.jpg" alt="dp" height="50px" class="rounded-circle"/>
-            </div>
-            <div class="name">
-                <p class="mb-0 who">Park Chayeong</p>
-                <p class=" by">Suggested for you</p>
-            </div>
-            <div class="request">
-                <button class="rounded-circle bg-body-tertiary follow-btn"><i class="bi bi-person-fill-check fs-5 text-primary"></i></button>
-            </div>
-        </div>
+  <div class="scroll">
+    <div class="title d-flex justify-content-between mx-3 my-2 mt-3">
+      <p class="fw-bold">Suggested For You</p>
     </div>
 
+    <div
+      class="people d-flex justify-content-between mx-4"
+      *ngFor="let val of suggestionList"
+    >
+      <div class="dp">
+        <img
+          src="../../../assets/empty.png"
+          alt="dp"
+          height="50px"
+          class="rounded-circle"
+        />
+      </div>
+      <div class="name">
+        <p
+          class="mb-0 who"
+          routerLink="/profile"
+          (click)="setUserProfileId(val.id)"
+        >
+          {{ val.username }}
+        </p>
+        <p class="by">Suggested for you</p>
+      </div>
+      <div class="request">
+        <button class="rounded-circle bg-body-tertiary unFollow-btn" *ngIf="friendAdded.includes(val.id)">
+          <i class="bi bi-person-fill-check fs-5 text-success" (click)="unfollowFriend(id, val.id)"></i>
+        </button>
+
+        <button class="rounded-circle bg-body-tertiary follow-btn" *ngIf="!friendAdded.includes(val.id)">
+          <i class="bi bi-person-fill-add fs-5 text-primary" (click)="addFriend(id, val.id)"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
 </div>

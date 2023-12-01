@@ -23,8 +23,8 @@ public class UserDetails {
     private Long id;
 
     @Lob
-    @Column(name = "dp", columnDefinition="BLOB")
-    private byte[] profile_picture;
+    @Column(name = "dp", columnDefinition = "TEXT")
+    private String profile_picture;
 
     private String companyName;
 
@@ -37,6 +37,9 @@ public class UserDetails {
     private String linkedInUrl;
 
     private String instagramUrl;
+
+    @Column(name = "about_me")
+    private String aboutMe;
 
     @JsonIgnore
     @OneToOne

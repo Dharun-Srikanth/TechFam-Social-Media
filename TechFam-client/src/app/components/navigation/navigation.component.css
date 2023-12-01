@@ -26,6 +26,7 @@
 
 .common{
     margin-bottom: 5px;
+    border: 0;
 }
 
 .active{
@@ -49,6 +50,11 @@
     color: white !important;
 }
 
-.name{
-    color: #c55ff5;
+.name:hover{
+    color: #4188ff;
+    cursor: pointer;
+}
+
+.nav-option{
+    cursor: pointer;
 }

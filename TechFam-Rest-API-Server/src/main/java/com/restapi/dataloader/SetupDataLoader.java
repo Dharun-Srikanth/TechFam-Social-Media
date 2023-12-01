@@ -1,7 +1,9 @@
 package com.restapi.dataloader;
 
 import com.restapi.model.AppUser;
+import com.restapi.model.Post;
 import com.restapi.model.Role;
+import com.restapi.repository.PostRepository;
 import com.restapi.repository.RoleRepository;
 import com.restapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     private UserRepository userRepository;
 
     @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
@@ -38,7 +43,11 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Role userRole = createRoleIfNotFound(Role.USER);
 
 //        Create user
-        createUserIfNotFound("user", "user","user@gamil.com", userRole);
+        AppUser user = createUserIfNotFound("TechBoy", "user","user@gamil.com", userRole);
+
+//        Sample Post
+        createPostIfNotFound("My new Business", user, "1701165360303-file.png");
+        createPostIfNotFound("Checking", user, null);
 
         alreadySetup = true;
     }
@@ -52,6 +61,20 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
             role = roleRepository.save(role);
         }
         return role;
+    }
+
+    @Transactional
+    private Post createPostIfNotFound(final String caption, final AppUser postUserId, final String photo) {
+        Optional<Post> post = postRepository.findById(1L);
+        Post post1 = null;
+        if (post.isEmpty()) {
+            post1 = new Post();
+            post1.setCaption(caption);
+            post1.setPostUserId(postUserId);
+            post1.setPhoto(photo);
+            post1 = postRepository.save(post1);
+        }
+        return post1;
     }
 
     @Transactional

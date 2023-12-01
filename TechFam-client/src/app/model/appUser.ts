@@ -4,3 +4,17 @@ export interface AppUser {
   password: String;
   role: String;
 }
+
+export interface detailsUser {
+  id: number;
+  username: String;
+  name: String;
+  email: String;
+}
+
+export interface UserVal {
+  id: number;
+  username: String;
+  name: String;
+  email: String;
+}

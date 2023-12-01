@@ -1,40 +1,63 @@
-.info{
-    margin-top: 2px;
+.info {
+  margin-top: 2px;
 }
 
-.info>.time{
-    font-size: 12px;
-    opacity: 50%;
+.info > .time {
+  font-size: 12px;
+  opacity: 50%;
 }
 
-.line{
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
+.line {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.line>.color{
-    width: 95%;
-    height: 1px;
-    background-color: rgba(180, 180, 180, 0.238);
-    margin: 2px;
+.line > .color {
+  width: 95%;
+  height: 1px;
+  background-color: rgba(180, 180, 180, 0.238);
+  margin: 2px;
 }
 
-.horizontal{
-    opacity: 10%;
+.horizontal {
+  opacity: 10%;
 }
 
-.like{
-    color: #b413ff;
-    cursor: pointer;
+.like {
+  color: #4188ff;
+  cursor: pointer;
 }
 
-.write-comment>i{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 93%;
-    cursor: pointer;
-    color: #4188ff;
+.write-comment > i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 93%;
+  cursor: pointer;
+  color: #4188ff;
+}
+
+.btn > i {
+  color: #4188ff;
+}
+
+.unlike:hover {
+  cursor: pointer;
+  color: #4188ff;
+}
+
+.comments:hover {
+  cursor: pointer;
+  color: #4188ff;
+}
+
+.name:hover{
+  cursor: pointer;
+  color: #4188ff;
+}
+
+.noPost{
+  background-color: #8FD8FC;
 }

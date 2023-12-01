@@ -5,8 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import net.minidev.json.annotate.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -22,11 +24,11 @@ public class Post {
     private String caption;
 
     @Lob
-    @Column(name = "photo", columnDefinition="BLOB")
-    private byte[] photo;
+    @Column(name = "photo")
+    private String photo;
 
     @Column(name = "likes")
-    private Long likeCount;
+    private Long likeCount=0L;
 
     @JsonIgnore
     @ManyToOne
@@ -36,5 +38,9 @@ public class Post {
     @JsonIgnore
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
 }

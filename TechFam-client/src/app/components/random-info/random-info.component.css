@@ -5,3 +5,11 @@
 .random{
     font-size: 20px;
 }
+
+.info>p{
+    font-size: larger;
+    background: -webkit-linear-gradient(#ae00ff, #4188ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

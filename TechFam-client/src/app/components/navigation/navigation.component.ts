@@ -11,61 +11,79 @@ import { UserDetailsService } from 'src/app/service/user-details.service';
   styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent {
-  constructor(private rendererObj: Renderer2, private router:Router, private storageService:StorageService, private detailsServive:UserDetailsService) {
+  constructor(
+    private rendererObj: Renderer2,
+    private router: Router,
+    private storageService: StorageService,
+    private detailsServive: UserDetailsService
+  ) {
     this.getDesignation();
+    this.setUserDetails(this.id)
   }
 
-  username:String = this.storageService.getLoggedInUser().username;
-  designation:String = "";
+  id:number = this.storageService.getLoggedInUser().id;
 
-  getDesignation(){
-    const userId:number = this.storageService.getLoggedInUser().id;
+  username: String = this.storageService.getLoggedInUser().username;
+  designation: String = JSON.parse(localStorage.getItem('designation')!);
+
+  userDetails: UserDetails = {
+    id: 0,
+    profile_picture: null,
+    companyName: '',
+    designation: '',
+    gitHubUrl: '',
+    instagramUrl: '',
+    linkedInUrl: '',
+    youtubeUrl: '',
+    userId: 0,
+    aboutMe: ''.substring(0, 121),
+  };
+
+  profileId() {
+    const id = this.storageService.getLoggedInUser().id;
+    this.storageService.setProfileId(id);
+    this.setUserDetails(id);
+  }
+
+  getDesignation() {
+    const userId: number = this.storageService.getLoggedInUser().id;
     this.detailsServive.userDetails(userId).subscribe({
-      next:(response:AppResponse) => {
-        let userDetails:UserDetails = response.data;
-        console.log(userDetails.designation);
-        this.designation = userDetails.designation;
-        localStorage.setItem("details",JSON.stringify(userDetails));
-      }
+      next: (response: AppResponse) => {
+        let userDetails: UserDetails = response.data;
+        if (userDetails !== null) {
+          let designation:String = userDetails.designation;
+          if (designation !== null)
+            localStorage.setItem('designation', JSON.stringify(designation));
+          else localStorage.setItem('designation', JSON.stringify(""));
+        }else{
+           localStorage.setItem('designation', JSON.stringify(""));
+        }
+        localStorage.setItem('details', JSON.stringify(this.userDetails));
+      },
+      error: (err) => console.log(err),
+      complete: () => console.log('Designation taken'),
     });
   }
 
-  url = new URL(window.location.href);
-
-  @ViewChild('feed')
-  feed!: ElementRef;
-
-  @ViewChild('explore')
-  explore!: ElementRef;
-
-  @ViewChild('friends')
-  friends!: ElementRef;
-
-  @ViewChild('about')
-  about!: ElementRef;
-
-  active(path:String) {
-    this.router.navigate([path]);
-
-    this.url = new URL(window.location.href);
-    const endpoint = this.url.pathname;
-
-    console.log(endpoint)
-    // this.removeClass();
-
-    if(endpoint === "/home"){
-      this.rendererObj.addClass(this.feed.nativeElement, 'active');
-    }else if(endpoint === "/explore"){
-      this.rendererObj.addClass(this.explore.nativeElement, 'active');
-    }else if(endpoint === "/friends"){
-      this.rendererObj.addClass(this.friends.nativeElement, 'active');
-    }else if(endpoint === "/about"){
-      this.rendererObj.addClass(this.about.nativeElement, 'active');
-    }
+  setUserDetails(userId: number) {
+    this.detailsServive.userDetails(userId).subscribe({
+      next: (response: AppResponse) => {
+        let userDetails: UserDetails = response.data;
+        if (userDetails === null) {
+          localStorage.setItem('details', JSON.stringify(this.userDetails));
+          return;
+        }
+        localStorage.setItem('details', JSON.stringify(userDetails));
+      },
+      error: (err) => console.log(err),
+      complete: () => console.log('details stored'),
+    });
   }
 
-  private removeClass(){
-    const elements = [this.feed, this.explore, this.friends, this.about]
-    elements.forEach(ele => this.rendererObj.removeClass(ele.nativeElement, 'active'));
+  route: String | null = this.storageService.getRoute();
+
+  getUserDetails(){
+    return JSON.parse(localStorage.getItem('details')!);
   }
+
 }

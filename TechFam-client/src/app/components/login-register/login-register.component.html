@@ -1,7 +1,6 @@
-
 <div class="sketchfab-embed-wrapper">
   <iframe
-  id="myVideo"
+    id="myVideo"
     title="Wonderful World"
     frameborder="0"
     allowfullscreen
@@ -20,19 +19,17 @@
 </div>
 
 <div
-  class="container d-flex justify-content-center align-items-center min-vh-100"
+  class="container-fluid d-flex justify-content-between align-items-center min-vh-100"
 >
-  <!-- <video autoplay muted loop id="myVideo">
-    <source src="rain.mp4" type="video/mp4" />
-  </video>
-   -->
+  <!-- Login card -->
 
-  <div class="scene scene--card me-5">
-    <div id="card1" class="card rounded-3 bg-light">
-      <div class="card__face card1__face--front rounded-3 bg-light">
+  <!-- <div class="scene scene--card me-5">
+    <div id="card1" class="card rounded-3">
+      <div class="card__face card1__face--front rounded-3">
         <p
           id="login"
           class="login pt-5 mb-0 fs-3 fw-bold"
+          [ngClass]="flip('card1','login') ? 'is-flipped' : 'is-flipped' "
           (click)="flip('card1', 'login')"
         >
           LOGIN
@@ -90,9 +87,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="scene scene--card ms-5">
+  <!-- Register Card -->
+  <!-- <div class="scene scene--card ms-5">
     <div id="card2" class="card rounded-3 bg-light">
       <div class="card__face card2__face--front rounded-3 bg-light">
         <p
@@ -108,19 +106,21 @@
         <div class="content m-2 d-flex flex-column rounded-3">
           <p
             id="register-back"
-            class="fw-bold fs-3 pt-5"
+            class="fw-bold fs-3 pt-2"
             (click)="flip('card2', 'register-back')"
           >
             REGISTER
           </p>
 
-          <form action="" class="m-3 mt-1">
+          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="m-3 mt-1"  >
             <div class="form-floating m-3 mt-1">
               <input
                 type="text"
                 class="form-control"
                 id="floatingInput"
                 placeholder="Username"
+                name="username"
+                [(ngModel)]="regUsername"
               />
               <label for="floatingInput">Username</label>
             </div>
@@ -130,6 +130,8 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="name@example.com"
+                name="email"
+                [(ngModel)]="regEmail"
               />
               <label for="floatingInput">Email address</label>
             </div>
@@ -139,13 +141,225 @@
                 class="form-control"
                 id="floatingPassword"
                 placeholder="Password"
+                name="password"
+                [(ngModel)]="regPassword"
               />
               <label for="floatingPassword">Password</label>
             </div>
+            <div class="form-floating m-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                [(ngModel)]="confirmPassword"
+              />
+              <label for="floatingPassword">Confirm Password</label>
+            </div>
             <div class="submit">
-              <button class="btn register-btn w-75 fw-bold">Register</button>
+              <button type="submit" class="btn register-btn w-75 fw-bold">
+                Register
+              </button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Login Card -->
+  <div class="scene scene--card ms-5" *ngIf="isLoginCard">
+    <div id="card1" class="card rounded-3">
+      <div class="card__face card__face--back rounded-3">
+        <div
+          class="content m-2 d-flex flex-column justify-content-center rounded-3"
+        >
+          <p id="login-back" class="text-primary fw-bold fs-3 pt-5 mt-5">
+            LOGIN
+          </p>
+
+          <form
+            #loginForm="ngForm"
+            (ngSubmit)="login(loginForm)"
+            action=""
+            class="m-3 mt-1"
+          >
+            <div class="form-floating m-3 mt-1">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                name="username"
+                [(ngModel)]="username"
+              />
+              <label for="floatingInput">TechFam Username</label>
+            </div>
+            <div class="form-floating m-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="password"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <p
+              class="error text-white bg-danger rounded-3"
+              [ngClass]="error.length > 0 ? 'visible' : 'invisible'"
+            >
+              {{ error }}
+            </p>
+            <div class="submit">
+              <button class="btn btn-primary w-75 fw-bold">Log in</button>
+            </div>
+          </form>
+          <div class="qn mx-3">
+            <p>New User?</p>
+          </div>
+          <div class="reg my-2">
+            <button
+              class="btn btn-outline-primary p-2 px-5 fw-bold"
+              (click)="setRegisterCard()"
+            >
+              Create an account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Card -->
+  <div class="scene scene--card ms-5" *ngIf="!isLoginCard">
+    <div id="card2" class="card rounded-3">
+      <div class="card__face card__face--back rounded-3">
+        <div class="content m-2 d-flex flex-column rounded-3">
+          <p id="register-back" class="fw-bold text-primary fs-3 mt-2">
+            REGISTER
+          </p>
+
+          <form
+            #registerForm="ngForm"
+            (ngSubmit)="register(registerForm)"
+            class="m-3 mt-1"
+          >
+            <div class="form-floating m-3 mt-1">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Username"
+                name="username"
+                required
+                minlength="3"
+                [(ngModel)]="regUsername"
+                #username="ngModel"
+                autocomplete="off"
+              />
+              <label for="floatingInput">Username</label>
+            </div>
+            <small
+              *ngIf="username.invalid && (username.dirty || username.touched)"
+              class="alert text-danger m-0 p-0"
+            >
+              <small *ngIf="username.errors?.['required']"
+                >Name is required.</small
+              >
+              <small *ngIf="username.errors?.['minlength']">
+                Name must be at least 3 characters long.
+              </small>
+            </small>
+            <div class="form-floating m-3 mt-1">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                name="email"
+                required
+                pattern="^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9. -]+\\. [a-zA-Z]{2,}$"
+                [(ngModel)]="regEmail"
+                #email="ngModel"
+                autocomplete="off"
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            <small
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="alert text-danger"
+            >
+              <small *ngIf="email.errors?.['required']"
+                >Email is required.</small
+              >
+              <small *ngIf="email.errors?.['pattern']">
+                <small>Invalid Email</small>
+              </small>
+            </small>
+            <div class="form-floating m-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="regPassword"
+                autocomplete="none"
+                required
+                #password="ngModel"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <small
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="alert text-danger"
+            >
+              <small *ngIf="password.errors?.['required']"
+                >Password is required.</small
+              >
+            </small>
+            <div class="form-floating m-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                [(ngModel)]="confirmPassword"
+                autocomplete="none"
+                required
+                #cpass="ngModel"
+              />
+              <label for="floatingPassword">Confirm Password</label>
+            </div>
+            <small
+              *ngIf="cpass.invalid && (cpass.dirty || cpass.touched)"
+              class="alert text-danger"
+            >
+              <small *ngIf="email.errors?.['required']"
+                >Confirm Passwrod is required.</small
+              >
+            </small>
+            <div class="submit">
+              <button type="submit" class="btn btn-primary w-75 fw-bold">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="qn mx-3">
+          <p>Already an User?</p>
+        </div>
+        <div class="reg my-2">
+          <button
+            class="btn btn-outline-primary p-2 w-50 px-5 fw-bold"
+            (click)="setLoginCard()"
+          >
+            Log in
+          </button>
         </div>
       </div>
     </div>
