@@ -10,7 +10,7 @@
 <p>👦🏻 password: user</p>
 
 <h3>💻 TECH STACKS 💻</h3>
-![](https://img.shields.io/badge/Code-React-informational?style=flat&logo=react&color=61DAFB)
+<img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
 <h4>💡 FRONTED: 💡</h4>
 <p>&nbsp; &nbsp; 🧑🏻‍💻 HTML</p>
 <p>&nbsp; &nbsp; 🧑🏻‍💻 CSS</p>
